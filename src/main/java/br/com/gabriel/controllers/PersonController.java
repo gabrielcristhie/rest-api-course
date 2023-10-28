@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import br.com.gabriel.data.vo.v1.PersonVO;
 import br.com.gabriel.services.PersonServices;
 import br.com.gabriel.util.MediaType;
@@ -30,7 +24,7 @@ public class PersonController {
 	private PersonServices service;
 	
 	@CrossOrigin("http://localhost:8080")
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, 
+	@GetMapping(value = "/{id}", 
 			        produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Finds a Person", description = "Finds a Person", 
 		tags = {"People"}, 
@@ -51,7 +45,7 @@ public class PersonController {
 		return service.findById(id);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping("/{id}")
 	@Operation(summary = "Deletes a Person", description = "Deletes a Person by passing a JSON, XML or YML representation of the person!", 
 		tags = {"People"}, 
 		responses = {
@@ -69,7 +63,7 @@ public class PersonController {
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:8080", "https://gabriel.com.br"})
-	@RequestMapping(method = RequestMethod.POST, 
+	@PostMapping( 
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
 			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Add a new Person", description = "Add a new Person by passing a JSON, XML or YML representation of the person!", 
@@ -89,7 +83,7 @@ public class PersonController {
 		return service.create(person);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, 
+	@PutMapping( 
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
 			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Updates a Person", description = "Updates a Person by passing a JSON, XML or YML representation of the person!", 
@@ -110,7 +104,7 @@ public class PersonController {
 		return service.update(person);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, 
+	@GetMapping( 
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	@Operation(summary = "Finds all People", description = "Finds all People", 
 				tags = {"People"}, 

@@ -28,7 +28,7 @@ import br.com.gabriel.services.PersonServices;
 import br.com.gabriel.unittests.mapper.mocks.MockPerson;
 
 /*
- * Testas para verificar HATEOAS
+ * Testes para verificar HATEOAS
  */
 @TestInstance(Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
@@ -50,7 +50,7 @@ class PersonServicesTest {
 
 	@Test
 	void testFindById() throws Exception {
-		Person entity = input.mockEntity(1); 
+		Person entity = input.mockEntity(); 
 		entity.setId(1L);
 		
 		when(repository.findById(1L)).thenReturn(Optional.of(entity));

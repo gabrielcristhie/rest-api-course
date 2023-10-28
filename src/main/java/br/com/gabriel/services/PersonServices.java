@@ -66,7 +66,7 @@ public class PersonServices {
 		var entity = DozerMapper.parseObject(personVO, Person.class);
 		
 		//Salva o person e depois devolve um personVO para retorno
-		var vo	   = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+		var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
 		vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}

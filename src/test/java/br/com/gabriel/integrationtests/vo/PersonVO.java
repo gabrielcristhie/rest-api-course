@@ -1,4 +1,4 @@
-package br.com.gabriel.integrationtests.vo;
+ package br.com.gabriel.integrationtests.vo;
 
 import java.io.Serializable;
 
