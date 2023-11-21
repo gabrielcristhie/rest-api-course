@@ -2,7 +2,9 @@
 
 import java.io.Serializable;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class PersonVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

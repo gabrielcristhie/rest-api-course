@@ -52,7 +52,7 @@ public class User implements UserDetails, Serializable {
 	private Boolean enabled;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user")}, inverseJoinColumns = {
 			@JoinColumn(name = "id_permission") })
 	private List<Permission> permissions;
 
@@ -67,41 +67,6 @@ public class User implements UserDetails, Serializable {
 	public User() {
 	}
 
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.permissions;
-	}
-
-	@Override
-	public String getPassword() {
-		return this.userName;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.userName;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return this.accountNonExpired;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return this.accountNonLocked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return this.isCredentialsNonExpired();
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return this.isEnabled();
-	}
 
 	public Long getId() {
 		return id;
@@ -172,6 +137,41 @@ public class User implements UserDetails, Serializable {
 	}
 
 	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.permissions;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.password;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.userName;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return this.accountNonExpired;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return this.accountNonLocked;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return this.credentialsNonExpired;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(accountNonExpired, accountNonLocked, credentialsNonExpired, enabled, fullName, id, password,
 				permissions, userName);
@@ -193,4 +193,5 @@ public class User implements UserDetails, Serializable {
 				&& Objects.equals(id, other.id) && Objects.equals(password, other.password)
 				&& Objects.equals(permissions, other.permissions) && Objects.equals(userName, other.userName);
 	}
+	
 }
