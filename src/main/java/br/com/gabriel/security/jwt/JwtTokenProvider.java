@@ -17,7 +17,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-
+ 
 import br.com.gabriel.data.vo.v1.security.TokenVO;
 import br.com.gabriel.exceptions.InvalidJwtAuthenticationException;
 import jakarta.annotation.PostConstruct;

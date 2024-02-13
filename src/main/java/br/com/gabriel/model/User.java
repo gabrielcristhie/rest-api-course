@@ -52,7 +52,7 @@ public class User implements UserDetails, Serializable {
 	private Boolean enabled;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user")}, inverseJoinColumns = {
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_permission") })
 	private List<Permission> permissions;
 
@@ -63,10 +63,9 @@ public class User implements UserDetails, Serializable {
 		}
 		return roles;
 	}
-	
+
 	public User() {
 	}
-
 
 	public Long getId() {
 		return id;
@@ -193,5 +192,5 @@ public class User implements UserDetails, Serializable {
 				&& Objects.equals(id, other.id) && Objects.equals(password, other.password)
 				&& Objects.equals(permissions, other.permissions) && Objects.equals(userName, other.userName);
 	}
-	
+
 }

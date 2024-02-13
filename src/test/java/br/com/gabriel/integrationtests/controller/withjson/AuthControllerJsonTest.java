@@ -22,33 +22,50 @@ import br.com.gabriel.integrationtests.vo.TokenVO;
 public class AuthControllerJsonTest extends AbstractIntegrationTest {
 
 	private static TokenVO tokenVO;
-
+	
 	@Test
 	@Order(1)
 	public void testSignin() throws JsonMappingException, JsonProcessingException {
-		AccountCredentialsVO user = new AccountCredentialsVO("Gabriel", "admin123");
-
-		tokenVO = given().basePath("/auth/signin").port(TestConfigs.SERVER_PORT)
-				.contentType(TestConfigs.CONTENT_TYPE_JSON).body(user).when().post().then().statusCode(200).extract()
-				.body().as(TokenVO.class);
-
+		
+		AccountCredentialsVO user = 
+				new AccountCredentialsVO("gabriel", "admin123");
+		
+		tokenVO = given()
+				.basePath("/auth/signin")
+					.port(TestConfigs.SERVER_PORT)
+					.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.body(user)
+					.when()
+				.post()
+					.then()
+						.statusCode(200)
+							.extract()
+							.body()
+								.as(TokenVO.class);
+		
 		assertNotNull(tokenVO.getAccessToken());
 		assertNotNull(tokenVO.getRefreshToken());
-
 	}
 	
 	@Test
 	@Order(2)
 	public void testRefresh() throws JsonMappingException, JsonProcessingException {
-		AccountCredentialsVO user = new AccountCredentialsVO("Gabriel", "admin123");
-
-		var newtokenVO = given().basePath("/auth/refresh").port(TestConfigs.SERVER_PORT)
-				.contentType(TestConfigs.CONTENT_TYPE_JSON).pathParam("username", tokenVO.getUsername()).header(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenVO.getRefreshToken()).when().put("{username}").then().statusCode(200).extract()
-				.body().as(TokenVO.class);
-
-		assertNotNull(newtokenVO.getAccessToken());
-		assertNotNull(newtokenVO.getRefreshToken());
-
+		
+		var newTokenVO = given()
+				.basePath("/auth/refresh")
+				.port(TestConfigs.SERVER_PORT)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+					.pathParam("username", tokenVO.getUsername())
+					.header(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenVO.getRefreshToken())
+				.when()
+					.put("{username}")
+				.then()
+					.statusCode(200)
+				.extract()
+					.body()
+						.as(TokenVO.class);
+		
+		assertNotNull(newTokenVO.getAccessToken());
+		assertNotNull(newTokenVO.getRefreshToken());
 	}
-
 }
