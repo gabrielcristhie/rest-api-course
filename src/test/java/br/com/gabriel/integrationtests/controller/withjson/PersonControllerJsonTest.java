@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -237,7 +239,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 	
 	@Test
 	@Order(6)
-	public void testFindAll() throws JsonMappingException, JsonProcessingException {
+	public void testFindAll() throws JsonMappingException, JsonProcessingException, JSONException {
 		
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
@@ -249,7 +251,14 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 						.body()
 							.asString();
 		
-		List<PersonVO> people = objectMapper.readValue(content, new TypeReference<List<PersonVO>>() {});
+		JSONObject responseJson = new JSONObject(content); 
+        JSONObject embedded = responseJson.getJSONObject("_embedded");
+        String personListJsonArrayString = embedded.getJSONArray("personVOList").toString();
+
+        List<PersonVO> people = objectMapper.readValue(personListJsonArrayString, new TypeReference<List<PersonVO>>() {});
+
+        
+//		List<PersonVO> people = objectMapper.readValue(content, new TypeReference<List<PersonVO>>() {});
 		
 		PersonVO foundPersonOne = people.get(0);
 		

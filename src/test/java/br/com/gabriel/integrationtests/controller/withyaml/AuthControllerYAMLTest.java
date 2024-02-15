@@ -29,7 +29,7 @@ import io.restassured.specification.RequestSpecification;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(OrderAnnotation.class)
-public class AuthControllerYamlTest extends AbstractIntegrationTest {
+public class AuthControllerYAMLTest extends AbstractIntegrationTest {
 
 	private static YMLMapper objectMapper;
 	private static TokenVO tokenVO;
