@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
@@ -51,18 +52,58 @@ public class PersonServices {
 		return vo;
 	}
 
-	public List<PersonVO> findAll() {
+	public PagedModel<EntityModel<PersonVO>> findAll(Pageable pageable) {
 
-		var persons = DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
-		persons.stream().forEach(p -> {
-			try {
-				p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		return persons;
+		logger.info("Finding All People!");
+
+		var personPage = repository.findAll(pageable);
+
+		var personVosPage = personPage.map(p -> DozerMapper.parseObject(p, PersonVO.class));
+
+		personVosPage.map(
+				p -> {
+					try {
+						return p.add(
+							linkTo(methodOn(PersonController.class)
+								.findById(p.getKey())).withSelfRel());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return p;
+				});	
+
+		Link link = linkTo(methodOn(PersonController.class).findAll(pageable.getPageNumber(), pageable.getPageSize(), "asc")).withSelfRel();
+				
+		return assembler.toModel(personVosPage, link);
 	}
+	
+	public PagedModel<EntityModel<PersonVO>> findPersonByName(String firstName, Pageable pageable) {
+
+		logger.info("Finding All People!");
+
+		var personPage = repository.findPersonsByName(firstName, pageable);
+
+		var personVosPage = personPage.map(p -> DozerMapper.parseObject(p, PersonVO.class));
+
+		personVosPage.map(
+				p -> {
+					try {
+						return p.add(
+							linkTo(methodOn(PersonController.class)
+								.findById(p.getKey())).withSelfRel());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return p;
+				});	
+
+		Link link = linkTo(methodOn(PersonController.class).findAll(pageable.getPageNumber(), pageable.getPageSize(), "asc")).withSelfRel();
+				
+		return assembler.toModel(personVosPage, link);
+	}
+
 
 	public PersonVO create(PersonVO personVO) throws Exception {
 
@@ -106,29 +147,6 @@ public class PersonServices {
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
 		repository.delete(entity);
-	}
-
-	public PagedModel<EntityModel<PersonVO>> findAll(Pageable pageable) {
-
-		logger.info("Finding All People!");
-
-		var personPage = repository.findAll(pageable);
-
-		var personVosPage = personPage.map(p -> DozerMapper.parseObject(p, PersonVO.class));
-
-		personVosPage.map(p -> {
-			try {
-				return p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel());
-			} catch (Exception e) {
-			}
-			return p;
-		});
-
-		Link link = linkTo(
-				methodOn(PersonController.class).findAll(pageable.getPageNumber(), pageable.getPageSize(), "asc"))
-				.withSelfRel();
-
-		return assembler.toModel(personVosPage, link);
 	}
 
 	@Transactional
