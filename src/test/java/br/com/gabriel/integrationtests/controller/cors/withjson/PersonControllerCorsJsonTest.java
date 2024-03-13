@@ -81,7 +81,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 		
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
-					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_ERUDIO)
+					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_GABRIEL)
 					.body(person)
 					.when()
 					.post()
@@ -117,7 +117,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 	
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
-					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_SEMERU)
+					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_CRISTHIE)
 					.body(person)
 				.when()
 					.post()
@@ -138,7 +138,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 			
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
-					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_ERUDIO)
+					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_GABRIEL)
 					.pathParam("id", person.getId())
 					.when()
 					.get("{id}")
@@ -175,7 +175,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 		
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
-					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_SEMERU)
+					.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_CRISTHIE)
 					.pathParam("id", person.getId())
 					.when()
 					.get("{id}")
