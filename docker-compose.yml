@@ -1,4 +1,4 @@
-version: 3.9
+version: '3.9'
 services:
   db:
     image: mysql:8.0.29
@@ -9,6 +9,7 @@ services:
       MYSQL_DATABASE: rest_api
       MYSQL_USER: docker
       MYSQL_PASSWORD: 12345678
+      MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_ROOT_HOST: '%'
       MYSQL_TCP_PORT: 3308
     ports:
