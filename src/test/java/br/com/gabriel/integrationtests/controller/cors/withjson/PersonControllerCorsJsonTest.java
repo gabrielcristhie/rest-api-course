@@ -6,11 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +27,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@TestMethodOrder(OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 	
 	private static RequestSpecification specification;
@@ -48,7 +45,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 	
 	@Test
 	@Order(0)
-	public void authorization() throws JsonMappingException, JsonProcessingException {
+	public void authorization() {
 		AccountCredentialsVO user = new AccountCredentialsVO("gabriel", "admin123");
 		
 		var accessToken = given()
