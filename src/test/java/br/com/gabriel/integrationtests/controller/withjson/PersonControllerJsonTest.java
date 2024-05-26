@@ -262,7 +262,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonOne.getEnabled());
 		
-		assertEquals(326, foundPersonOne.getId());
+		assertEquals(328, foundPersonOne.getId());
 		
 		assertEquals("Alejoa", foundPersonOne.getFirstName());
 		assertEquals("Davidi", foundPersonOne.getLastName());
@@ -279,7 +279,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonSix.getEnabled());
 		
-		assertEquals(639, foundPersonSix.getId());
+		assertEquals(641, foundPersonSix.getId());
 		
 		assertEquals("Alford", foundPersonSix.getFirstName());
 		assertEquals("Bulfoot", foundPersonSix.getLastName());
@@ -294,7 +294,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.accept(TestConfigs.CONTENT_TYPE_JSON)
-				.pathParam("firstName", "ayr")
+				.pathParam("firstName", "uie")
 				.queryParams("page", 0, "size", 6, "direction", "asc")
 					.when()
 					.get("findPersonByName/{firstName}")
@@ -317,11 +317,11 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonOne.getEnabled());
 		
-		assertEquals(1, foundPersonOne.getId());
+		assertEquals(865, foundPersonOne.getId());
 		
-		assertEquals("Ayrton", foundPersonOne.getFirstName());
-		assertEquals("Senna", foundPersonOne.getLastName());
-		assertEquals("São Paulo", foundPersonOne.getAddress());
+		assertEquals("Aguie", foundPersonOne.getFirstName());
+		assertEquals("Appleyard", foundPersonOne.getLastName());
+		assertEquals("7807 Spenser Junction", foundPersonOne.getAddress());
 		assertEquals("Male", foundPersonOne.getGender());
 	}
 	
@@ -360,17 +360,17 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 						.body()
 							.asString();
 		
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/326\"}}}"));
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/97\"}}}"));
-		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost:8888/api/person/v1/766\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost/api/person/v1/328\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost/api/person/v1/99\"}}}"));
+		assertTrue(content.contains("\"_links\":{\"self\":{\"href\":\"http://localhost/api/person/v1/768\"}}}"));
 		
-		assertTrue(content.contains("{\"first\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=0&size=10&sort=firstName,asc\"}"));
-		assertTrue(content.contains("\"prev\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=2&size=10&sort=firstName,asc\"}"));
-		assertTrue(content.contains("\"self\":{\"href\":\"http://localhost:8888/api/person/v1?page=3&size=10&direction=asc\"}"));
-		assertTrue(content.contains("\"next\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=4&size=10&sort=firstName,asc\"}"));
-		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost:8888/api/person/v1?direction=asc&page=100&size=10&sort=firstName,asc\"}}"));
+		assertTrue(content.contains("{\"first\":{\"href\":\"http://localhost/api/person/v1?direction=asc&page=0&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"prev\":{\"href\":\"http://localhost/api/person/v1?direction=asc&page=2&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"self\":{\"href\":\"http://localhost/api/person/v1?page=3&size=10&direction=asc\"}"));
+		assertTrue(content.contains("\"next\":{\"href\":\"http://localhost/api/person/v1?direction=asc&page=4&size=10&sort=firstName,asc\"}"));
+		assertTrue(content.contains("\"last\":{\"href\":\"http://localhost/api/person/v1?direction=asc&page=101&size=10&sort=firstName,asc\"}}"));
 		
-		assertTrue(content.contains("\"page\":{\"size\":10,\"totalElements\":1007,\"totalPages\":101,\"number\":3}}"));
+		assertTrue(content.contains("\"page\":{\"size\":10,\"totalElements\":1021,\"totalPages\":102,\"number\":3}}"));
 	}
 	
 	private void mockPerson() {

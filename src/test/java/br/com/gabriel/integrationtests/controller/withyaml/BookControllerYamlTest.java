@@ -231,26 +231,26 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
         List<BookVO> content = response.getContent();
 
         BookVO foundBookOne = content.get(0);
-        
+
         assertNotNull(foundBookOne.getId());
         assertNotNull(foundBookOne.getTitle());
         assertNotNull(foundBookOne.getAuthor());
         assertNotNull(foundBookOne.getPrice());
         assertTrue(foundBookOne.getId() > 0);
-        assertEquals("Big Data: como extrair volume, variedade, velocidade e valor da avalanche de informação cotidiana", foundBookOne.getTitle());
-        assertEquals("Viktor Mayer-Schonberger e Kenneth Kukier", foundBookOne.getAuthor());
-        assertEquals(54.0, foundBookOne.getPrice());
+        assertEquals("Clean Code", foundBookOne.getTitle());
+        assertEquals("Robert C. Martin", foundBookOne.getAuthor());
+        assertEquals(77.00, foundBookOne.getPrice());
         
         BookVO foundBookFive = content.get(4);
-        
+
         assertNotNull(foundBookFive.getId());
         assertNotNull(foundBookFive.getTitle());
         assertNotNull(foundBookFive.getAuthor());
         assertNotNull(foundBookFive.getPrice());
         assertTrue(foundBookFive.getId() > 0);
-        assertEquals("Domain Driven Design", foundBookFive.getTitle());
-        assertEquals("Eric Evans", foundBookFive.getAuthor());
-        assertEquals(92.0, foundBookFive.getPrice());
+        assertEquals("Engenharia de Software: uma abordagem profissional", foundBookFive.getTitle());
+        assertEquals("Roger S. Pressman", foundBookFive.getAuthor());
+        assertEquals(56.0, foundBookFive.getPrice());
     }
      
     @Test
@@ -277,16 +277,16 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
 		
 		var content = unthreatedContent.replace("\n", "").replace("\r", "");
 		
-		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost:8888/api/book/v1/3\""));
-		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost:8888/api/book/v1/5\""));
-		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost:8888/api/book/v1/7\""));
+		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost/api/book/v1/3\""));
+		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost/api/book/v1/5\""));
+		assertTrue(content.contains("rel: \"self\"    href: \"http://localhost/api/book/v1/7\""));
 		
-		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost:8888/api/book/v1?limit=12&direction=asc&page=0&size=12&sort=title,asc\""));
-		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost:8888/api/book/v1?page=0&limit=12&direction=asc\""));
-		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost:8888/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\""));
-		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost:8888/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"first\"  href: \"http://localhost/api/book/v1?limit=12&direction=asc&page=0&size=12&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"self\"  href: \"http://localhost/api/book/v1?page=0&limit=12&direction=asc\""));
+		assertTrue(content.contains("rel: \"next\"  href: \"http://localhost/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\""));
+		assertTrue(content.contains("rel: \"last\"  href: \"http://localhost/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\""));
 		
-		assertTrue(content.contains("size: 12  totalElements: 15  totalPages: 2  number: 0"));
+		assertTrue(content.contains("size: 12  totalElements: 14  totalPages: 2  number: 0"));
     }
     
     private void mockBook() {
