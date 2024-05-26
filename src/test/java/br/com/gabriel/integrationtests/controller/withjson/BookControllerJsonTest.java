@@ -203,9 +203,9 @@ public class BookControllerJsonTest extends AbstractIntegrationTest {
         assertNotNull(foundBookOne.getAuthor());
         assertNotNull(foundBookOne.getPrice());
         assertTrue(foundBookOne.getId() > 0);
-        assertEquals("Clean Code", foundBookOne.getTitle());
-        assertEquals("Robert C. Martin", foundBookOne.getAuthor());
-        assertEquals(77.00, foundBookOne.getPrice());
+        assertEquals("Big Data: como extrair volume, variedade, velocidade e valor da avalanche de informação cotidiana", foundBookOne.getTitle());
+        assertEquals("Viktor Mayer-Schonberger e Kenneth Kukier", foundBookOne.getAuthor());
+        assertEquals(54.00, foundBookOne.getPrice());
 
         BookVO foundBookFive = books.get(4);
 
@@ -214,9 +214,9 @@ public class BookControllerJsonTest extends AbstractIntegrationTest {
         assertNotNull(foundBookFive.getAuthor());
         assertNotNull(foundBookFive.getPrice());
         assertTrue(foundBookFive.getId() > 0);
-        assertEquals("Engenharia de Software: uma abordagem profissional", foundBookFive.getTitle());
-        assertEquals("Roger S. Pressman", foundBookFive.getAuthor());
-        assertEquals(56.0, foundBookFive.getPrice());
+        assertEquals("Domain Driven Design", foundBookFive.getTitle());
+        assertEquals("Eric Evans", foundBookFive.getAuthor());
+        assertEquals(92.0, foundBookFive.getPrice());
     }
 
     @Test
@@ -243,7 +243,7 @@ public class BookControllerJsonTest extends AbstractIntegrationTest {
             assertTrue(content.contains("\"next\":{\"href\":\"http://localhost/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\"}"));
             assertTrue(content.contains("\"last\":{\"href\":\"http://localhost/api/book/v1?limit=12&direction=asc&page=1&size=12&sort=title,asc\"}}"));
 
-            assertTrue(content.contains("\"page\":{\"size\":12,\"totalElements\":14,\"totalPages\":2,\"number\":0}}"));
+            assertTrue(content.contains("\"page\":{\"size\":12,\"totalElements\":15,\"totalPages\":2,\"number\":0}}"));
     }
 
     private void mockBook() {

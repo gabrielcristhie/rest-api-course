@@ -200,26 +200,26 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 		List<BookVO> books = wrapper.getContent();
 		
 		BookVO foundBookOne = books.get(0);
-        
-        assertNotNull(foundBookOne.getId());
-        assertNotNull(foundBookOne.getTitle());
-        assertNotNull(foundBookOne.getAuthor());
-        assertNotNull(foundBookOne.getPrice());
-        assertTrue(foundBookOne.getId() > 0);
-	        assertEquals("Clean Code", foundBookOne.getTitle());
-	        assertEquals("Robert C. Martin", foundBookOne.getAuthor());
-	        assertEquals(77.00, foundBookOne.getPrice());
-	        
-        BookVO foundBookFive = books.get(4);
-        
-        assertNotNull(foundBookFive.getId());
-        assertNotNull(foundBookFive.getTitle());
-        assertNotNull(foundBookFive.getAuthor());
-        assertNotNull(foundBookFive.getPrice());
-        assertTrue(foundBookFive.getId() > 0);
-	        assertEquals("Engenharia de Software: uma abordagem profissional", foundBookFive.getTitle());
-	        assertEquals("Roger S. Pressman", foundBookFive.getAuthor());
-	        assertEquals(56.0, foundBookFive.getPrice());
+
+		assertNotNull(foundBookOne.getId());
+		assertNotNull(foundBookOne.getTitle());
+		assertNotNull(foundBookOne.getAuthor());
+		assertNotNull(foundBookOne.getPrice());
+		assertTrue(foundBookOne.getId() > 0);
+		assertEquals("Big Data: como extrair volume, variedade, velocidade e valor da avalanche de informação cotidiana", foundBookOne.getTitle());
+		assertEquals("Viktor Mayer-Schonberger e Kenneth Kukier", foundBookOne.getAuthor());
+		assertEquals(54.00, foundBookOne.getPrice());
+
+		BookVO foundBookFive = books.get(4);
+
+		assertNotNull(foundBookFive.getId());
+		assertNotNull(foundBookFive.getTitle());
+		assertNotNull(foundBookFive.getAuthor());
+		assertNotNull(foundBookFive.getPrice());
+		assertTrue(foundBookFive.getId() > 0);
+		assertEquals("Domain Driven Design", foundBookFive.getTitle());
+		assertEquals("Eric Evans", foundBookFive.getAuthor());
+		assertEquals(92.00, foundBookFive.getPrice());
 	}
 
 	
@@ -269,7 +269,7 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 	    assertTrue(content.contains("<rel>self</rel><href>http://localhost/api/book/v1/7</href>"));
 
 	    assertTrue(content.contains("<size>12</size>"));
-	    assertTrue(content.contains("<totalElements>14</totalElements>"));
+	    assertTrue(content.contains("<totalElements>15</totalElements>"));
 	    assertTrue(content.contains("<totalPages>2</totalPages>"));
 	    assertTrue(content.contains("<number>0</number>"));
 	}

@@ -269,7 +269,7 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonOne.getEnabled());
 		
-		assertEquals(328, foundPersonOne.getId());
+		assertEquals(326, foundPersonOne.getId());
 		
 		assertEquals("Alejoa", foundPersonOne.getFirstName());
 		assertEquals("Davidi", foundPersonOne.getLastName());
@@ -286,7 +286,7 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonSix.getEnabled());
 		
-		assertEquals(641, foundPersonSix.getId());
+		assertEquals(639, foundPersonSix.getId());
 		
 		assertEquals("Alford", foundPersonSix.getFirstName());
 		assertEquals("Bulfoot", foundPersonSix.getLastName());
@@ -324,7 +324,7 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 
 		assertTrue(foundPersonOne.getEnabled());
 		
-		assertEquals(865, foundPersonOne.getId());
+		assertEquals(863, foundPersonOne.getId());
 		
 		assertEquals("Aguie", foundPersonOne.getFirstName());
 		assertEquals("Appleyard", foundPersonOne.getLastName());
@@ -368,16 +368,16 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 						.body()
 							.asString();
 		
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/328</href></links>"));
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/42</href></links>"));
-		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/99</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/350</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/534</href></links>"));
+		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1/97</href></links>"));
 		
 		assertTrue(content.contains("<links><rel>first</rel><href>http://localhost/api/person/v1?direction=asc&amp;page=0&amp;size=10&amp;sort=firstName,asc</href></links>"));
 		assertTrue(content.contains("<links><rel>prev</rel><href>http://localhost/api/person/v1?direction=asc&amp;page=2&amp;size=10&amp;sort=firstName,asc</href></links>"));
 		assertTrue(content.contains("<links><rel>self</rel><href>http://localhost/api/person/v1?page=3&amp;size=10&amp;direction=asc</href></links>"));
 		assertTrue(content.contains("<links><rel>next</rel><href>http://localhost/api/person/v1?direction=asc&amp;page=4&amp;size=10&amp;sort=firstName,asc</href></links>"));
-		assertTrue(content.contains("<links><rel>last</rel><href>http://localhost/api/person/v1?direction=asc&amp;page=101&amp;size=10&amp;sort=firstName,asc</href></links>"));
-		assertTrue(content.contains("<page><size>10</size><totalElements>1021</totalElements><totalPages>102</totalPages><number>3</number></page>"));
+		assertTrue(content.contains("<links><rel>last</rel><href>http://localhost/api/person/v1?direction=asc&amp;page=100&amp;size=10&amp;sort=firstName,asc</href></links>"));
+		assertTrue(content.contains("<page><size>10</size><totalElements>1007</totalElements><totalPages>101</totalPages><number>3</number></page>"));
 	}
 	
 	private void mockPerson() {
