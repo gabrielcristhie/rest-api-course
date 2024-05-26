@@ -37,6 +37,6 @@ jobs:
       
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag ${{ secrets.DOCKER_USERNAME }}/rest_api:latest ${{ secrets.DOCKER_USERNAME }}/rest_api:${{ github.run_id }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/rest_api:${{ github.run_id }}
-        docker push ${{ secrets.DOCKER_USERNAME }}/rest_api:latest
+        docker tag gcristhie/rest_api:latest gcristhie/rest_api:${{ github.run_id }}
+        docker push gcristhie/rest_api:${{ github.run_id }}
+        docker push gcristhie/rest_api:latest
