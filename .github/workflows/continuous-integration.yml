@@ -23,14 +23,14 @@ jobs:
         java-version: '18'
         distribution: 'adopt'
         cache: maven
+    
+    - name: Docker Compose Build
+      working-directory: ./
+      run: docker compose build
         
     - name: Build Application JAR
       working-directory: ./
       run: mvn clean package
-      
-    - name: Docker Compose Build
-      working-directory: ./
-      run: docker compose build
       
     - name: Push to Docker Hub Container Registry
       run: |
